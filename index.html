@@ -4,25 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rosairee — Crafted to Perfection</title>
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
-  <!-- External CSS -->
   <link href="style.css" rel="stylesheet"/>
 </head>
 <body>
 
 <!-- ══════════════════════════════════════════
      NAVBAR
+     ─────────────────────────────────────────
+     HOW TO ADD YOUR LOGO:
+     1. Copy your logo image file (e.g. logo.png / logo.jpg / logo.svg)
+        into the SAME folder as index.html
+     2. In the <img> tag below, change src="logo.png" to match your filename
+        Example: if your file is called rosairee-logo.png → src="rosairee-logo.png"
+     3. Save. Refresh your browser. Done!
+     If the image doesn't load, the fallback text "Rosairee" shows automatically.
 ═══════════════════════════════════════════ -->
 <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center gap-2" href="#">
-      <span class="brand-icon"><i class="bi bi-flower1"></i></span>
-      <span class="brand-text">Rosairee</span>
+    <a class="navbar-brand" href="#">
+      <img src="logo.png" alt="Rosairee Logo" class="site-logo"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+      <!-- Fallback text logo — shown only when logo.png is not found -->
+      <span class="brand-fallback d-flex align-items-center gap-2">
+        <span class="brand-icon"><i class="bi bi-flower1"></i></span>
+        <span class="brand-text">Rosairee</span>
+      </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
@@ -44,80 +53,56 @@
 </nav>
 
 <!-- ══════════════════════════════════════════
-     HERO CAROUSEL
+     HERO — SINGLE SLIDE
 ═══════════════════════════════════════════ -->
-<section id="home">
-  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4500">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+<section id="home" class="hero-single">
+  <div class="hero-bg-layer" aria-hidden="true">
+    <div class="hero-gradient-orb orb1"></div>
+    <div class="hero-gradient-orb orb2"></div>
+    <div class="hero-gradient-orb orb3"></div>
+  </div>
+  <div class="hero-petal-deco" aria-hidden="true">
+    <i class="bi bi-flower3 petal p1"></i>
+    <i class="bi bi-flower2 petal p2"></i>
+    <i class="bi bi-flower1 petal p3"></i>
+    <i class="bi bi-flower3 petal p4"></i>
+    <i class="bi bi-flower2 petal p5"></i>
+  </div>
+  <div class="container hero-single-content text-center">
+    <div class="hero-logo-mark" aria-hidden="true"><i class="bi bi-flower3"></i></div>
+    <p class="hero-sub">Est. with love · Kathmandu</p>
+    <h1 class="hero-single-title">
+      <span class="hero-title-line1">Rosairee</span>
+      <span class="hero-title-divider">✦</span>
+      <em class="hero-title-tagline">Crafted to Perfection</em>
+    </h1>
+    <p class="hero-single-desc">
+      Handcrafted ribbon bouquets that last forever — roses, sunflowers, tulips,<br class="d-none d-md-block"/>
+      daisies, lilies &amp; plumeria, wrapped with love for every occasion.
+    </p>
+    <div class="hero-single-btns">
+      <a href="#builder" class="btn btn-rose-solid">
+        <i class="bi bi-flower3 me-2"></i>Build Your Bouquet
+      </a>
+      <a href="#flowers" class="btn btn-ghost-light">See Our Flowers</a>
     </div>
-    <div class="carousel-inner">
-
-      <!-- Slide 1 -->
-      <div class="carousel-item active hero-slide slide-rose">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-          <p class="hero-sub">A Bouquet for Every Emotion</p>
-          <h1 class="hero-title">Roses That<br/><em>Speak</em> Volumes</h1>
-          <p class="hero-desc">Handcrafted ribbon bouquets, wrapped with care, delivered with love.</p>
-          <a href="#builder" class="btn btn-rose-solid me-3">Create Your Bouquet</a>
-          <a href="#flowers" class="btn btn-ghost-light">See Flowers</a>
-        </div>
-        <div class="hero-petal-deco" aria-hidden="true">
-          <i class="bi bi-flower3 petal p1"></i>
-          <i class="bi bi-flower2 petal p2"></i>
-          <i class="bi bi-flower1 petal p3"></i>
-        </div>
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="carousel-item hero-slide slide-sun">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-          <p class="hero-sub">Sun-Kissed Creations</p>
-          <h1 class="hero-title">Sunflowers &amp;<br/><em>Golden</em> Days</h1>
-          <p class="hero-desc">Bright, bold, and beautiful — just like the person you're gifting.</p>
-          <a href="#builder" class="btn btn-rose-solid me-3">Build Now</a>
-          <a href="#gallery" class="btn btn-ghost-light">View Gallery</a>
-        </div>
-        <div class="hero-petal-deco" aria-hidden="true">
-          <i class="bi bi-sun petal p1"></i>
-          <i class="bi bi-flower3 petal p2"></i>
-          <i class="bi bi-brightness-high petal p3"></i>
-        </div>
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="carousel-item hero-slide slide-tulip">
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-          <p class="hero-sub">Crafted to Perfection</p>
-          <h1 class="hero-title">Every Petal<br/><em>Tells</em> a Story</h1>
-          <p class="hero-desc">Custom ribbon bouquets for weddings, anniversaries, and every occasion.</p>
-          <a href="#builder" class="btn btn-rose-solid me-3">Start Designing</a>
-          <a href="#bouquets" class="btn btn-ghost-light">Our Collections</a>
-        </div>
-        <div class="hero-petal-deco" aria-hidden="true">
-          <i class="bi bi-flower2 petal p1"></i>
-          <i class="bi bi-flower1 petal p2"></i>
-          <i class="bi bi-flower3 petal p3"></i>
-        </div>
-      </div>
-
+    <div class="hero-flower-tags">
+      <span class="hero-ftag">🌹 Rose — Rs 100</span>
+      <span class="hero-ftag">🌻 Sunflower — Rs 200</span>
+      <span class="hero-ftag">🌷 Tulip — Rs 120</span>
+      <span class="hero-ftag">🌼 Daisy — Rs 120</span>
+      <span class="hero-ftag">🌸 Plumeria — Rs 80</span>
+      <span class="hero-ftag">🌺 Lily — Rs 250</span>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-      <span class="carousel-ctrl-icon"><i class="bi bi-chevron-left"></i></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-      <span class="carousel-ctrl-icon"><i class="bi bi-chevron-right"></i></span>
-    </button>
+  </div>
+  <div class="hero-scroll-cue">
+    <span>Scroll</span>
+    <i class="bi bi-chevron-down"></i>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════════
-     MARQUEE TAGLINE
+     MARQUEE
 ═══════════════════════════════════════════ -->
 <div class="marquee-strip">
   <div class="marquee-track">
@@ -138,6 +123,25 @@
 
 <!-- ══════════════════════════════════════════
      ABOUT STRIP
+     ─────────────────────────────────────────
+     HOW TO ADD PHOTOS IN THE ABOUT SECTION:
+     Place 3 image files in the same folder as index.html, then:
+
+     Image 1 (large left card) — "Our Workshop":
+       Replace the <div class="about-img-card img-placeholder"> block with:
+       <div class="about-img-card">
+         <img src="workshop.jpg" alt="Our Workshop"/>
+       </div>
+
+     Image 2 (small top-right) — "With Love":
+       <div class="about-img-card small">
+         <img src="crafting.jpg" alt="Crafting with love"/>
+       </div>
+
+     Image 3 (small bottom-right) — "Handcrafted":
+       <div class="about-img-card small">
+         <img src="tools.jpg" alt="Handcrafted tools"/>
+       </div>
 ═══════════════════════════════════════════ -->
 <section class="about-strip py-5">
   <div class="container">
@@ -148,7 +152,8 @@
         <p class="section-body">Rosairee was born from the belief that flowers should last forever. Our artisans handcraft exquisite ribbon bouquets — each petal, each stem, each wrap — shaped with devotion and precision. Whether it's a single rose or a grand wedding arrangement, we craft it to perfection.</p>
         <div class="row g-3 mt-3">
           <div class="col-4 stat-block text-center">
-            <span class="stat-number" data-count="850">0</span><span class="stat-number">+</span>
+            <!-- Changed from 850 to 100+ as requested -->
+            <span class="stat-number">100</span><span class="stat-number">+</span>
             <p class="stat-label">Bouquets Made</p>
           </div>
           <div class="col-4 stat-block text-center">
@@ -163,14 +168,17 @@
       </div>
       <div class="col-lg-6">
         <div class="about-img-grid">
+          <!-- PHOTO SLOT 1: Large left image — replace with your workshop/studio photo -->
           <div class="about-img-card img-placeholder">
             <i class="bi bi-flower1"></i>
             <span>Our Workshop</span>
           </div>
+          <!-- PHOTO SLOT 2: Small top-right — replace with a crafting/process photo -->
           <div class="about-img-card img-placeholder small">
             <i class="bi bi-heart-fill"></i>
             <span>With Love</span>
           </div>
+          <!-- PHOTO SLOT 3: Small bottom-right — replace with tools/materials photo -->
           <div class="about-img-card img-placeholder small">
             <i class="bi bi-scissors"></i>
             <span>Handcrafted</span>
@@ -183,25 +191,45 @@
 
 <!-- ══════════════════════════════════════════
      FLOWER PRICE CARDS
+     ─────────────────────────────────────────
+     HOW TO ADD A PHOTO TO EACH FLOWER CARD:
+     Each card has a <div class="flower-card-icon ..."> with an icon.
+     To replace with a photo, swap that div with:
+       <div class="flower-card-photo">
+         <img src="rose-ribbon.jpg" alt="Rose ribbon flower"/>
+       </div>
+     Add .flower-card-photo styles in style.css (already included below).
 ═══════════════════════════════════════════ -->
 <section id="flowers" class="flowers-section py-5">
   <div class="container">
     <div class="section-header text-center mb-5">
       <span class="section-eyebrow">Our Flowers</span>
       <h2 class="section-heading">Choose Your <em>Bloom</em></h2>
-      <p class="section-sub">Each ribbon flower is handcrafted from premium satin ribbon — timeless and everlasting.</p>
+      <p class="section-sub">Each ribbon flower is handcrafted from premium satin ribbon — timeless and everlasting. Available in any color of your choice.</p>
     </div>
+
+    <!-- Color Note Banner -->
+    <div class="color-note-banner mb-5">
+      <i class="bi bi-palette-fill"></i>
+      <div>
+        <strong>All flowers are available in any ribbon color!</strong>
+        <span>Specify your preferred shades when placing your order — we stock a wide range of satin ribbon colors from pastels to jewel tones.</span>
+      </div>
+    </div>
+
     <div class="row g-4 justify-content-center">
 
       <!-- Rose -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="rose" data-price="100">
-          <div class="flower-card-icon rose-icon">
-            <i class="bi bi-flower3"></i>
-          </div>
+          <!-- PHOTO SLOT: Replace icon div below with <div class="flower-card-photo"><img src="rose.jpg" alt="Rose"/></div> -->
+          <div class="flower-card-icon rose-icon"><i class="bi bi-flower3"></i></div>
           <div class="flower-badge rose-badge">Most Loved</div>
           <h3 class="flower-name">Rose</h3>
-          <p class="flower-desc">The timeless symbol of love and passion. Rich red satin ribbon folded into perfect petals.</p>
+          <p class="flower-desc">The timeless symbol of love and passion. Available in red, pink, white, yellow, peach, and more.</p>
+          <div class="flower-color-hint">
+            <i class="bi bi-palette"></i> Any color available
+          </div>
           <div class="flower-price">Rs <span>100</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('rose', 100)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -212,11 +240,10 @@
       <!-- Sunflower -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="sunflower" data-price="200">
-          <div class="flower-card-icon sunflower-icon">
-            <i class="bi bi-brightness-high"></i>
-          </div>
+          <div class="flower-card-icon sunflower-icon"><i class="bi bi-brightness-high"></i></div>
           <h3 class="flower-name">Sunflower</h3>
-          <p class="flower-desc">Bold and joyful, crafted from golden ribbon with a lush chocolate center detail.</p>
+          <p class="flower-desc">Bold and joyful. Classic golden-yellow or custom ribbon shades — crafted with a rich center detail.</p>
+          <div class="flower-color-hint"><i class="bi bi-palette"></i> Any color available</div>
           <div class="flower-price">Rs <span>200</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('sunflower', 200)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -227,11 +254,10 @@
       <!-- Tulip -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="tulip" data-price="120">
-          <div class="flower-card-icon tulip-icon">
-            <i class="bi bi-flower1"></i>
-          </div>
+          <div class="flower-card-icon tulip-icon"><i class="bi bi-flower1"></i></div>
           <h3 class="flower-name">Tulip</h3>
-          <p class="flower-desc">Elegant cup-shaped blooms in soft pink or lavender ribbon — delicate and refined.</p>
+          <p class="flower-desc">Elegant cup-shaped blooms. Popular in pink, lavender, red, or white — delicate and refined.</p>
+          <div class="flower-color-hint"><i class="bi bi-palette"></i> Any color available</div>
           <div class="flower-price">Rs <span>120</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('tulip', 120)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -242,11 +268,10 @@
       <!-- Daisy -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="daisy" data-price="120">
-          <div class="flower-card-icon daisy-icon">
-            <i class="bi bi-flower2"></i>
-          </div>
+          <div class="flower-card-icon daisy-icon"><i class="bi bi-flower2"></i></div>
           <h3 class="flower-name">Daisy</h3>
-          <p class="flower-desc">Cheerful white petals around a sunny yellow centre — pure, sweet, and charming.</p>
+          <p class="flower-desc">Cheerful and charming. White, yellow, purple, or any shade you love — sweet and timeless.</p>
+          <div class="flower-color-hint"><i class="bi bi-palette"></i> Any color available</div>
           <div class="flower-price">Rs <span>120</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('daisy', 120)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -257,12 +282,11 @@
       <!-- Plumeria -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="plumeria" data-price="80">
-          <div class="flower-card-icon plumeria-icon">
-            <i class="bi bi-flower3"></i>
-          </div>
+          <div class="flower-card-icon plumeria-icon"><i class="bi bi-flower3"></i></div>
           <div class="flower-badge plumeria-badge">Best Value</div>
           <h3 class="flower-name">Plumeria</h3>
-          <p class="flower-desc">Tropical elegance with five-petal ivory ribbon blooms — light, airy, and dreamy.</p>
+          <p class="flower-desc">Tropical five-petal blooms — ivory, blush, coral, lilac, or any ribbon shade you desire.</p>
+          <div class="flower-color-hint"><i class="bi bi-palette"></i> Any color available</div>
           <div class="flower-price">Rs <span>80</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('plumeria', 80)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -273,12 +297,11 @@
       <!-- Lily -->
       <div class="col-sm-6 col-lg-4">
         <div class="flower-card" data-flower="lily" data-price="250">
-          <div class="flower-card-icon lily-icon">
-            <i class="bi bi-flower1"></i>
-          </div>
+          <div class="flower-card-icon lily-icon"><i class="bi bi-flower1"></i></div>
           <div class="flower-badge lily-badge">Premium</div>
           <h3 class="flower-name">Lily</h3>
-          <p class="flower-desc">Graceful trumpet-shaped blooms in lustrous white or blush ribbon — majestic and refined.</p>
+          <p class="flower-desc">Graceful trumpet-shaped blooms. Majestic in white, blush, champagne, or any chosen hue.</p>
+          <div class="flower-color-hint"><i class="bi bi-palette"></i> Any color available</div>
           <div class="flower-price">Rs <span>250</span> <small>/ piece</small></div>
           <button class="btn btn-add-flower" onclick="quickAdd('lily', 250)">
             <i class="bi bi-plus-circle"></i> Add to Bouquet
@@ -292,16 +315,35 @@
 
 <!-- ══════════════════════════════════════════
      BOUQUET COLLECTIONS
+     ─────────────────────────────────────────
+     HOW TO ADD PHOTOS TO BOUQUET CARDS:
+     Each card has a <div class="bouquet-img-placeholder"> block.
+     To replace with a real photo:
+
+     BEFORE (placeholder):
+       <div class="bouquet-img-placeholder">
+         <i class="bi bi-flower3"></i>
+         <span>Add Your Photo</span>
+       </div>
+
+     AFTER (your photo):
+       <div class="bouquet-img-wrap">
+         <img src="eternal-rose-bouquet.jpg" alt="Eternal Rose Bouquet"/>
+       </div>
+
+     Steps:
+       1. Put your image file (JPG/PNG) in the same folder as index.html
+       2. Replace the bouquet-img-placeholder div with bouquet-img-wrap + img tag
+       3. Set src to your image filename
+       4. Recommended image size: 400×250 pixels or similar landscape ratio
 ═══════════════════════════════════════════ -->
 <section id="bouquets" class="bouquets-section py-5">
   <div class="container">
     <div class="section-header text-center mb-5">
       <span class="section-eyebrow">Collections</span>
       <h2 class="section-heading">Signature <em>Bouquets</em></h2>
-      <p class="section-sub">Pre-designed bouquets — customizable to your preference.</p>
+      <p class="section-sub">Pre-designed bouquets — customizable to your color preference.</p>
     </div>
-
-    <!-- Tabs -->
     <ul class="nav nav-pills bouquet-tabs justify-content-center mb-5" id="bouquetTabs">
       <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tab-romance">Romance</button></li>
       <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tab-joy">Joyful</button></li>
@@ -314,29 +356,25 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-flower3"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 1: Replace with <div class="bouquet-img-wrap"><img src="eternal-rose.jpg" alt="Eternal Rose"/></div> -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-flower3"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Eternal Rose</h4>
                 <p>12 Roses · Snow Paper · 2 Butterfly Pins</p>
                 <div class="bouquet-tags">
                   <span class="btag">12 × Rose = Rs 1200</span>
-                  <span class="btag">+Snow Paper</span>
+                  <span class="btag">Snow Paper</span>
                   <span class="btag">2 × Butterfly = Rs 60</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card featured-bouquet">
               <div class="bouquet-featured-tag">Staff Pick</div>
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-flower1"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 2: Replace with <div class="bouquet-img-wrap"><img src="blush-dreams.jpg" alt="Blush Dreams"/></div> -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-flower1"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Blush Dreams</h4>
                 <p>8 Tulips + 4 Lilies · Butterfly Accents</p>
@@ -345,16 +383,14 @@
                   <span class="btag">4 × Lily = Rs 1000</span>
                   <span class="btag">Butterfly</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-heart"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 3: Replace with <div class="bouquet-img-wrap"><img src="sweetheart.jpg" alt="Sweetheart Wrap"/></div> -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-heart"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Sweetheart Wrap</h4>
                 <p>6 Roses + 6 Plumerias · Leaf Accents</p>
@@ -363,7 +399,7 @@
                   <span class="btag">6 × Plumeria = Rs 480</span>
                   <span class="btag">Leaves</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
@@ -375,10 +411,8 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-brightness-high"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 4 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-brightness-high"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Sunshine Burst</h4>
                 <p>6 Sunflowers + 4 Daisies · Snow Paper</p>
@@ -387,16 +421,14 @@
                   <span class="btag">4 × Daisy = Rs 480</span>
                   <span class="btag">Snow Paper</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-flower2"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 5 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-flower2"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Meadow Mix</h4>
                 <p>5 Daisies + 5 Plumerias + 2 Butterfly Pins</p>
@@ -405,16 +437,14 @@
                   <span class="btag">5 × Plumeria = Rs 400</span>
                   <span class="btag">2 × Butterfly = Rs 60</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-stars"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 6 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-stars"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Birthday Bloom</h4>
                 <p>4 Roses + 4 Sunflowers + 4 Tulips</p>
@@ -423,7 +453,7 @@
                   <span class="btag">4 × Sunflower = Rs 800</span>
                   <span class="btag">4 × Tulip = Rs 480</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
@@ -435,10 +465,8 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-gem"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 7 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-gem"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Royal Lily</h4>
                 <p>10 Lilies · Snow Paper · 3 Butterflies</p>
@@ -447,17 +475,15 @@
                   <span class="btag">3 × Butterfly = Rs 90</span>
                   <span class="btag">Snow Paper</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card featured-bouquet">
               <div class="bouquet-featured-tag">Bestseller</div>
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-flower3"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 8 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-flower3"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Grand Opulence</h4>
                 <p>12 Roses + 6 Lilies · Full Wrap · 5 Butterflies</p>
@@ -466,16 +492,14 @@
                   <span class="btag">6 × Lily = Rs 1500</span>
                   <span class="btag">5 × Butterfly = Rs 150</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="bouquet-card">
-              <div class="bouquet-img-placeholder">
-                <i class="bi bi-award"></i>
-                <span>Add Your Photo</span>
-              </div>
+              <!-- BOUQUET PHOTO SLOT 9 -->
+              <div class="bouquet-img-placeholder"><i class="bi bi-award"></i><span>Add Your Photo</span></div>
               <div class="bouquet-body">
                 <h4>Wedding Cascade</h4>
                 <p>8 Lilies + 8 Tulips · Leaf Accents · Snow Paper</p>
@@ -484,7 +508,7 @@
                   <span class="btag">8 × Tulip = Rs 960</span>
                   <span class="btag">Leaves + Snow Paper</span>
                 </div>
-                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise & Order</a>
+                <a href="#builder" class="btn btn-bouquet-order mt-3">Customise &amp; Order</a>
               </div>
             </div>
           </div>
@@ -496,6 +520,31 @@
 
 <!-- ══════════════════════════════════════════
      GALLERY
+     ─────────────────────────────────────────
+     HOW TO ADD YOUR REAL BOUQUET PHOTOS TO THE GALLERY:
+
+     Each gallery item looks like this:
+       <div class="gallery-item large">
+         <div class="gallery-placeholder">...</div>
+         <div class="gallery-hover"><span>View</span></div>
+       </div>
+
+     To add your photo:
+     1. Place your image in the same folder as index.html
+     2. Replace the ENTIRE <div class="gallery-placeholder"> block with:
+          <img src="your-bouquet-photo.jpg" alt="Bouquet name" class="gallery-real-img"/>
+     3. Leave the <div class="gallery-hover"> as is — the hover effect stays.
+
+     Example (for the first large tile):
+       <div class="gallery-item large">
+         <img src="rose-collection.jpg" alt="Signature Rose Collection" class="gallery-real-img"/>
+         <div class="gallery-hover"><span>View</span></div>
+       </div>
+
+     RECOMMENDED IMAGE SIZES:
+       Large tile (class="large"):  800×600px or larger
+       Tall tile (class="tall"):    400×700px or larger
+       Normal tile:                 400×300px or larger
 ═══════════════════════════════════════════ -->
 <section id="gallery" class="gallery-section py-5">
   <div class="container">
@@ -505,40 +554,50 @@
       <p class="section-sub">A glimpse into bouquets we've lovingly crafted.</p>
     </div>
     <div class="gallery-grid">
+      <!-- GALLERY SLOT 1 (large) -->
       <div class="gallery-item large">
         <div class="gallery-placeholder"><i class="bi bi-flower3"></i><span>Signature Rose Collection</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 2 -->
       <div class="gallery-item">
         <div class="gallery-placeholder"><i class="bi bi-brightness-high"></i><span>Sunflower Burst</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 3 -->
       <div class="gallery-item">
         <div class="gallery-placeholder"><i class="bi bi-flower1"></i><span>Tulip Pastel</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 4 (tall) -->
       <div class="gallery-item tall">
         <div class="gallery-placeholder"><i class="bi bi-flower2"></i><span>Daisy Field</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 5 -->
       <div class="gallery-item">
         <div class="gallery-placeholder"><i class="bi bi-gem"></i><span>Lily Luxury</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 6 -->
       <div class="gallery-item">
         <div class="gallery-placeholder"><i class="bi bi-flower3"></i><span>Plumeria Dream</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 7 (large) -->
       <div class="gallery-item large">
         <div class="gallery-placeholder"><i class="bi bi-heart-fill"></i><span>Wedding Collection</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
+      <!-- GALLERY SLOT 8 -->
       <div class="gallery-item">
         <div class="gallery-placeholder"><i class="bi bi-stars"></i><span>Birthday Bouquet</span></div>
         <div class="gallery-hover"><span>View</span></div>
       </div>
     </div>
-    <p class="gallery-note text-center mt-4"><i class="bi bi-info-circle"></i> Replace placeholder tiles with your bouquet photographs.</p>
+    <p class="gallery-note text-center mt-4">
+      <i class="bi bi-camera"></i> Replace each placeholder with your own bouquet photographs — see the HTML comments above for instructions.
+    </p>
   </div>
 </section>
 
@@ -550,69 +609,59 @@
     <div class="section-header text-center mb-5">
       <span class="section-eyebrow">Custom Order</span>
       <h2 class="section-heading">Build Your <em>Dream Bouquet</em></h2>
-      <p class="section-sub">Choose your flowers and accessories — we'll craft it just for you.</p>
+      <p class="section-sub">Choose your flowers, color, and accessories — we'll craft it just for you.</p>
     </div>
 
     <div class="row g-4">
       <!-- Builder Form -->
       <div class="col-lg-7">
         <div class="builder-card">
+
+          <!-- STEP 1: Flowers -->
           <h5 class="builder-step-title"><span class="step-num">1</span> Select Flowers</h5>
           <div class="row g-3 mb-4">
-            <div class="col-6 col-md-4" id="qty-rose">
-              <label class="builder-flower-label rose-label">
-                <i class="bi bi-flower3"></i> Rose — Rs 100
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label rose-label"><i class="bi bi-flower3"></i> Rose — Rs 100</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('rose',-1)">−</button>
                 <input type="number" id="inp-rose" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('rose',1)">+</button>
               </div>
             </div>
-            <div class="col-6 col-md-4" id="qty-sunflower">
-              <label class="builder-flower-label sunflower-label">
-                <i class="bi bi-brightness-high"></i> Sunflower — Rs 200
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label sunflower-label"><i class="bi bi-brightness-high"></i> Sunflower — Rs 200</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('sunflower',-1)">−</button>
                 <input type="number" id="inp-sunflower" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('sunflower',1)">+</button>
               </div>
             </div>
-            <div class="col-6 col-md-4" id="qty-tulip">
-              <label class="builder-flower-label tulip-label">
-                <i class="bi bi-flower1"></i> Tulip — Rs 120
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label tulip-label"><i class="bi bi-flower1"></i> Tulip — Rs 120</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('tulip',-1)">−</button>
                 <input type="number" id="inp-tulip" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('tulip',1)">+</button>
               </div>
             </div>
-            <div class="col-6 col-md-4" id="qty-daisy">
-              <label class="builder-flower-label daisy-label">
-                <i class="bi bi-flower2"></i> Daisy — Rs 120
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label daisy-label"><i class="bi bi-flower2"></i> Daisy — Rs 120</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('daisy',-1)">−</button>
                 <input type="number" id="inp-daisy" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('daisy',1)">+</button>
               </div>
             </div>
-            <div class="col-6 col-md-4" id="qty-plumeria">
-              <label class="builder-flower-label plumeria-label">
-                <i class="bi bi-flower3"></i> Plumeria — Rs 80
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label plumeria-label"><i class="bi bi-flower3"></i> Plumeria — Rs 80</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('plumeria',-1)">−</button>
                 <input type="number" id="inp-plumeria" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('plumeria',1)">+</button>
               </div>
             </div>
-            <div class="col-6 col-md-4" id="qty-lily">
-              <label class="builder-flower-label lily-label">
-                <i class="bi bi-flower1"></i> Lily — Rs 250
-              </label>
+            <div class="col-6 col-md-4">
+              <label class="builder-flower-label lily-label"><i class="bi bi-flower1"></i> Lily — Rs 250</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('lily',-1)">−</button>
                 <input type="number" id="inp-lily" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
@@ -621,32 +670,68 @@
             </div>
           </div>
 
-          <h5 class="builder-step-title"><span class="step-num">2</span> Choose Accessories</h5>
+          <!-- STEP 2: Color Preference -->
+          <h5 class="builder-step-title"><span class="step-num">2</span> Choose Ribbon Colors</h5>
+          <div class="color-picker-section mb-4">
+            <p class="color-picker-note">
+              <i class="bi bi-info-circle-fill"></i>
+              All flowers are available in <strong>any ribbon color</strong>. Select your preferred palette below or describe your own.
+            </p>
+            <div class="color-swatches">
+              <button class="swatch" style="background:#e53935" title="Red" onclick="selectSwatch(this,'Red')"></button>
+              <button class="swatch" style="background:#f48fb1" title="Pink" onclick="selectSwatch(this,'Pink')"></button>
+              <button class="swatch" style="background:#f8bbd0" title="Blush" onclick="selectSwatch(this,'Blush')"></button>
+              <button class="swatch" style="background:#ffffff;border:2px solid #ccc" title="White" onclick="selectSwatch(this,'White')"></button>
+              <button class="swatch" style="background:#ffe082" title="Yellow" onclick="selectSwatch(this,'Yellow')"></button>
+              <button class="swatch" style="background:#ffb74d" title="Orange" onclick="selectSwatch(this,'Orange')"></button>
+              <button class="swatch" style="background:#ce93d8" title="Lavender" onclick="selectSwatch(this,'Lavender')"></button>
+              <button class="swatch" style="background:#80cbc4" title="Mint" onclick="selectSwatch(this,'Mint')"></button>
+              <button class="swatch" style="background:#90caf9" title="Baby Blue" onclick="selectSwatch(this,'Baby Blue')"></button>
+              <button class="swatch" style="background:#a5d6a7" title="Sage Green" onclick="selectSwatch(this,'Sage Green')"></button>
+              <button class="swatch" style="background:#ffccbc" title="Peach" onclick="selectSwatch(this,'Peach')"></button>
+              <button class="swatch" style="background:#b71c1c" title="Burgundy" onclick="selectSwatch(this,'Burgundy')"></button>
+            </div>
+            <div class="selected-colors-display mt-2" id="selectedColors">
+              <span class="no-color-yet">No colors selected yet — tap swatches above or type below</span>
+            </div>
+            <input type="text" id="inp-color-note" class="form-control builder-input mt-2"
+                   placeholder="e.g. Red roses, white lilies, mixed pastel daisies…"
+                   oninput="updateTotal()"/>
+          </div>
+
+          <!-- STEP 3: Accessories -->
+          <h5 class="builder-step-title"><span class="step-num">3</span> Choose Accessories</h5>
           <div class="row g-3 mb-4">
+            <!-- Butterfly Pins -->
             <div class="col-md-4">
-              <label class="builder-acc-label">
-                <i class="bi bi-bug"></i> Butterfly Pins — Rs 30 each
-              </label>
+              <label class="builder-acc-label"><i class="bi bi-bug"></i> Butterfly Pins — Rs 30 each</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('butterfly',-1)">−</button>
                 <input type="number" id="inp-butterfly" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
                 <button class="btn btn-qty" onclick="changeQty('butterfly',1)">+</button>
               </div>
             </div>
+
+            <!-- Snow Paper — YES/NO toggle -->
             <div class="col-md-4">
-              <label class="builder-acc-label">
-                <i class="bi bi-snow"></i> Snow Paper — Rs/meter
-              </label>
-              <div class="input-group input-group-sm">
-                <input type="number" id="inp-snow-price" class="form-control text-center" placeholder="Rs/m" min="0" onchange="updateTotal()"/>
-                <input type="number" id="inp-snow-meter" class="form-control text-center" placeholder="Meters" min="0" step="0.1" onchange="updateTotal()"/>
+              <label class="builder-acc-label"><i class="bi bi-snow"></i> Snow Paper Wrapping</label>
+              <div class="snow-toggle-group">
+                <button class="snow-btn" id="snow-yes" onclick="setSnow(true)">
+                  <i class="bi bi-check-circle-fill"></i> Yes
+                </button>
+                <button class="snow-btn snow-btn-no active" id="snow-no" onclick="setSnow(false)">
+                  <i class="bi bi-x-circle-fill"></i> No
+                </button>
               </div>
-              <small class="text-muted">Enter price per meter and quantity</small>
+              <div class="snow-note">
+                <i class="bi bi-info-circle"></i>
+                Price negotiated per meter used — our team will confirm the rate for your bouquet.
+              </div>
             </div>
+
+            <!-- Leaves -->
             <div class="col-md-4">
-              <label class="builder-acc-label">
-                <i class="bi bi-tree"></i> Leaves — Rs 10 each
-              </label>
+              <label class="builder-acc-label"><i class="bi bi-tree"></i> Leaves — Rs 10 each</label>
               <div class="input-group input-group-sm">
                 <button class="btn btn-qty" onclick="changeQty('leaf',-1)">−</button>
                 <input type="number" id="inp-leaf" class="form-control text-center" value="0" min="0" onchange="updateTotal()"/>
@@ -655,32 +740,38 @@
             </div>
           </div>
 
-          <h5 class="builder-step-title"><span class="step-num">3</span> Order Details</h5>
+          <!-- STEP 4: Order Details -->
+          <h5 class="builder-step-title"><span class="step-num">4</span> Order Details</h5>
           <div class="row g-3">
             <div class="col-md-6">
-              <input type="text" class="form-control builder-input" placeholder="Your Name"/>
+              <input type="text" id="inp-name" class="form-control builder-input" placeholder="Your Name"/>
             </div>
             <div class="col-md-6">
-              <input type="tel" class="form-control builder-input" placeholder="Phone Number"/>
+              <input type="tel" id="inp-phone" class="form-control builder-input" placeholder="Phone Number"/>
             </div>
             <div class="col-12">
-              <textarea class="form-control builder-input" rows="2" placeholder="Special Instructions (e.g. color preference, occasion, message card)"></textarea>
+              <textarea id="inp-notes" class="form-control builder-input" rows="2"
+                        placeholder="Any other special instructions — occasion, message card, delivery date…"></textarea>
             </div>
           </div>
-        </div>
+
+        </div><!-- /builder-card -->
       </div>
 
       <!-- Price Summary -->
       <div class="col-lg-5">
-        <div class="summary-card sticky-top" style="top: 90px;">
+        <div class="summary-card sticky-top" style="top:90px">
           <h5 class="summary-title"><i class="bi bi-receipt"></i> Order Summary</h5>
           <div id="summary-lines" class="summary-lines">
             <p class="summary-empty">Add flowers to see your total.</p>
           </div>
           <hr class="summary-divider"/>
           <div class="summary-total-row">
-            <span>Total</span>
+            <span>Flowers &amp; Accessories Total</span>
             <span id="grand-total" class="grand-total">Rs 0</span>
+          </div>
+          <div class="snow-pricing-note mt-2" id="snowPricingNote" style="display:none">
+            <i class="bi bi-snow"></i> Snow paper pricing will be confirmed by our team based on meters used.
           </div>
           <button class="btn btn-place-order w-100 mt-3" onclick="placeOrder()">
             <i class="bi bi-bag-heart"></i> Place Order via WhatsApp
@@ -717,8 +808,8 @@
         <div class="acc-info-card text-center">
           <div class="acc-icon"><i class="bi bi-snow2"></i></div>
           <h5>Snow Paper Wrap</h5>
-          <p>Frosted wrapping paper that adds volume and elegance — priced per meter used.</p>
-          <div class="acc-price">Rs/meter <small>(variable)</small></div>
+          <p>Frosted wrapping paper that adds volume and elegance. Price is negotiated per meter used — our team will confirm the rate based on your bouquet size.</p>
+          <div class="acc-price">Price per meter <small>(negotiated)</small></div>
         </div>
       </div>
       <div class="col-md-4">
@@ -734,7 +825,7 @@
 </section>
 
 <!-- ══════════════════════════════════════════
-     TESTIMONIALS CAROUSEL
+     TESTIMONIALS
 ═══════════════════════════════════════════ -->
 <section class="testimonials-section py-5">
   <div class="container">
@@ -802,7 +893,6 @@
     <div class="row justify-content-center">
       <div class="col-lg-8">
         <div class="accordion rosairee-accordion" id="faqAccordion">
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
@@ -811,11 +901,10 @@
             </h2>
             <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Ribbon bouquets are handcrafted from premium satin ribbon — each petal, leaf, and stem is shaped by hand. Unlike real flowers, they never wilt, making them a lasting keepsake. They look strikingly similar to fresh flowers and can be customised in any color.
+                Ribbon bouquets are handcrafted from premium satin ribbon — each petal, leaf, and stem shaped by hand. Unlike real flowers, they never wilt, making them a lasting keepsake. They look strikingly similar to fresh flowers and can be customised in any color.
               </div>
             </div>
           </div>
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
@@ -824,11 +913,10 @@
             </h2>
             <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                The price is the sum of: (number of each flower × flower price) + accessories. For example, butterfly pins are Rs 30 each, leaves are Rs 10 each, and snow paper is charged per meter based on the paper rate at the time of order.
+                The price is the sum of: (number of each flower × flower price) + accessories. Butterfly pins are Rs 30 each, leaves are Rs 10 each. Snow paper is priced per meter used and is negotiated at the time of order — our team will confirm the rate with you.
               </div>
             </div>
           </div>
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
@@ -837,11 +925,10 @@
             </h2>
             <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Absolutely! When placing your order, mention your preferred colors in the special instructions. We have a wide range of ribbon shades — from pastels to deep jewel tones. Subject to availability, we'll accommodate your preference.
+                Absolutely — and it's important! All flowers are available in any ribbon color. When placing your order, mention your preferred colors in the color section or special instructions. We have a wide range of satin ribbon shades from pastels to deep jewel tones. Subject to availability, we'll accommodate your preference.
               </div>
             </div>
           </div>
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
@@ -854,7 +941,6 @@
               </div>
             </div>
           </div>
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
@@ -867,20 +953,18 @@
               </div>
             </div>
           </div>
-
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-                What is the snow paper pricing?
+                How is snow paper priced?
               </button>
             </h2>
             <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
               <div class="accordion-body">
-                Snow paper is priced per meter used and rates may vary depending on the type of snow paper chosen (plain, printed, glitter, etc.). Our team will inform you of the exact rate when you confirm your order. In the builder, enter the price per meter and the quantity you wish to use.
+                Snow paper is priced per meter used, and the rate is negotiated based on the type of paper (plain, printed, glitter, etc.) and the size of your bouquet. When you select "Yes" for snow paper in your order, our team will calculate the exact meters needed and confirm the price with you before proceeding.
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -911,8 +995,11 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-lg-4">
-        <div class="footer-brand">
-          <i class="bi bi-flower1"></i> Rosairee
+        <div class="footer-brand-wrap">
+          <!-- Footer logo — same as navbar: place logo.png in folder -->
+          <img src="logo.png" alt="Rosairee" class="footer-logo"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"/>
+          <div class="footer-brand" style="display:none"><i class="bi bi-flower1"></i> Rosairee</div>
         </div>
         <p class="footer-tagline">Crafted to Perfection.<br/>Ribbon bouquets that last forever.</p>
         <div class="footer-socials mt-3">
@@ -959,21 +1046,17 @@
   </div>
 </footer>
 
-<!-- Toast Notification -->
+<!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
   <div id="addToast" class="toast align-items-center border-0" role="alert">
     <div class="d-flex">
-      <div class="toast-body" id="toastMsg">
-        <i class="bi bi-check-circle-fill me-2"></i> Added to bouquet!
-      </div>
+      <div class="toast-body" id="toastMsg"><i class="bi bi-check-circle-fill me-2"></i> Added to bouquet!</div>
       <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
     </div>
   </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- External JS -->
 <script src="script.js"></script>
 </body>
 </html>
