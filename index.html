@@ -730,154 +730,154 @@
             </div>
 
 
-              <!-- STEP 3: Accessories -->
-              <h5 class="builder-step-title"><span class="step-num">3</span> Choose Accessories</h5>
+            <!-- STEP 3: Accessories -->
+            <h5 class="builder-step-title"><span class="step-num">3</span> Choose Accessories</h5>
 
-              <!-- ── Wrapping & Basic Extras ── -->
-              <p class="acc-group-label">Wrapping &amp; Basic Extras</p>
-              <div class="row g-3 mb-3">
+            <!-- ── Wrapping & Basic Extras ── -->
+            <p class="acc-group-label">Wrapping &amp; Basic Extras</p>
+            <div class="row g-3 mb-3">
 
-                <!-- Butterfly Pins -->
-                <div class="col-6 col-md-3">
-                  <label class="builder-acc-label"><i class="bi bi-bug"></i> Butterfly Pins — Rs 30</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('butterfly',-1)">−</button>
-                    <input type="number" id="inp-butterfly" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('butterfly',1)">+</button>
-                  </div>
+              <!-- Butterfly Pins -->
+              <div class="col-6 col-md-3">
+                <label class="builder-acc-label"><i class="bi bi-bug"></i> Butterfly Pins — Rs 30</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('butterfly',-1)">−</button>
+                  <input type="number" id="inp-butterfly" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('butterfly',1)">+</button>
                 </div>
-
-                <!-- Leaves -->
-                <div class="col-6 col-md-3">
-                  <label class="builder-acc-label"><i class="bi bi-tree"></i> Leaves — Rs 10 each</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('leaf',-1)">−</button>
-                    <input type="number" id="inp-leaf" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('leaf',1)">+</button>
-                  </div>
-                </div>
-
-                <!-- Polaroid Photo -->
-                <div class="col-6 col-md-3">
-                  <label class="builder-acc-label"><i class="bi bi-camera"></i> Polaroid Photo — Rs 30</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('polaroid',-1)">−</button>
-                    <input type="number" id="inp-polaroid" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('polaroid',1)">+</button>
-                  </div>
-                </div>
-
-                <!-- Plushie -->
-                <div class="col-6 col-md-3">
-                  <label class="builder-acc-label"><i class="bi bi-bear2"></i> Plushie — Rs 500 each</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('plushie',-1)">−</button>
-                    <input type="number" id="inp-plushie" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('plushie',1)">+</button>
-                  </div>
-                </div>
-
               </div>
 
-              <!-- ── Snow Paper ── -->
-              <div class="row g-3 mb-3">
-                <div class="col-12">
-                  <div class="snow-full-row">
-                    <label class="builder-acc-label mb-1"><i class="bi bi-snow"></i> Snow Paper Wrapping</label>
-                    <div class="d-flex align-items-center gap-3 flex-wrap">
-                      <div class="snow-toggle-group">
-                        <button class="snow-btn" id="snow-yes" onclick="setSnow(true)">
-                          <i class="bi bi-check-circle-fill"></i> Yes
-                        </button>
-                        <button class="snow-btn snow-btn-no active" id="snow-no" onclick="setSnow(false)">
-                          <i class="bi bi-x-circle-fill"></i> No
-                        </button>
-                      </div>
-                      <div class="snow-note">
-                        <i class="bi bi-info-circle"></i>
-                        <strong>Rs 100 per meter used.</strong> Our team will measure and confirm the total meters for
-                        your bouquet size.
-                      </div>
+              <!-- Leaves -->
+              <div class="col-6 col-md-3">
+                <label class="builder-acc-label"><i class="bi bi-tree"></i> Leaves — Rs 10 each</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('leaf',-1)">−</button>
+                  <input type="number" id="inp-leaf" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('leaf',1)">+</button>
+                </div>
+              </div>
+
+              <!-- Polaroid Photo -->
+              <div class="col-6 col-md-3">
+                <label class="builder-acc-label"><i class="bi bi-camera"></i> Polaroid Photo — Rs 30</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('polaroid',-1)">−</button>
+                  <input type="number" id="inp-polaroid" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('polaroid',1)">+</button>
+                </div>
+              </div>
+
+              <!-- Plushie -->
+              <div class="col-6 col-md-3">
+                <label class="builder-acc-label"><i class="bi bi-bear2"></i> Plushie — Rs 500 each</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('plushie',-1)">−</button>
+                  <input type="number" id="inp-plushie" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('plushie',1)">+</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ── Snow Paper ── -->
+            <div class="row g-3 mb-3">
+              <div class="col-12">
+                <div class="snow-full-row">
+                  <label class="builder-acc-label mb-1"><i class="bi bi-snow"></i> Snow Paper Wrapping</label>
+                  <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div class="snow-toggle-group">
+                      <button class="snow-btn" id="snow-yes" onclick="setSnow(true)">
+                        <i class="bi bi-check-circle-fill"></i> Yes
+                      </button>
+                      <button class="snow-btn snow-btn-no active" id="snow-no" onclick="setSnow(false)">
+                        <i class="bi bi-x-circle-fill"></i> No
+                      </button>
+                    </div>
+                    <div class="snow-note">
+                      <i class="bi bi-info-circle"></i>
+                      <strong>Rs 100 per meter used.</strong> Our team will measure and confirm the total meters for
+                      your bouquet size.
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- ── Chocolates ── -->
-              <p class="acc-group-label">🍫 Chocolates (add to bouquet)</p>
-              <div class="row g-3 mb-4">
+            <!-- ── Chocolates ── -->
+            <p class="acc-group-label">🍫 Chocolates (add to bouquet)</p>
+            <div class="row g-3 mb-4">
 
-                <div class="col-6 col-md-4">
-                  <label class="builder-acc-label choc-label"><i class="bi bi-bar-chart-steps"></i> KitKat — Rs
-                    50</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('kitkat',-1)">−</button>
-                    <input type="number" id="inp-kitkat" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('kitkat',1)">+</button>
-                  </div>
+              <div class="col-6 col-md-4">
+                <label class="builder-acc-label choc-label"><i class="bi bi-bar-chart-steps"></i> KitKat — Rs
+                  50</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('kitkat',-1)">−</button>
+                  <input type="number" id="inp-kitkat" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('kitkat',1)">+</button>
                 </div>
-
-                <div class="col-6 col-md-4">
-                  <label class="builder-acc-label choc-label"><i class="bi bi-heart-fill"></i> Dairy Milk Silk — Rs
-                    220</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('dairymilksilk',-1)">−</button>
-                    <input type="number" id="inp-dairymilksilk" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('dairymilksilk',1)">+</button>
-                  </div>
-                </div>
-
-                <div class="col-6 col-md-4">
-                  <label class="builder-acc-label choc-label"><i class="bi bi-grid-1x2"></i> Dairy Milk — Rs 100</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('dairymilk',-1)">−</button>
-                    <input type="number" id="inp-dairymilk" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('dairymilk',1)">+</button>
-                  </div>
-                </div>
-
-                <div class="col-6 col-md-4">
-                  <label class="builder-acc-label choc-label"><i class="bi bi-egg"></i> Kinder Joy — Rs 100</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('kinderjoy',-1)">−</button>
-                    <input type="number" id="inp-kinderjoy" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('kinderjoy',1)">+</button>
-                  </div>
-                </div>
-
-                <div class="col-6 col-md-4">
-                  <label class="builder-acc-label choc-label"><i class="bi bi-layers"></i> Snickers — Rs 150</label>
-                  <div class="input-group input-group-sm">
-                    <button class="btn btn-qty" onclick="changeQty('snickers',-1)">−</button>
-                    <input type="number" id="inp-snickers" class="form-control text-center" value="0" min="0"
-                      onchange="updateTotal()" />
-                    <button class="btn btn-qty" onclick="changeQty('snickers',1)">+</button>
-                  </div>
-                </div>
-
               </div>
 
-              <!-- STEP 4: Order Details -->
-              <h5 class="builder-step-title"><span class="step-num">4</span> Order Details</h5>
-              <div class="row g-3">
-                <div class="col-md-6">
-                  <input type="text" id="inp-name" class="form-control builder-input" placeholder="Your Name" />
+              <div class="col-6 col-md-4">
+                <label class="builder-acc-label choc-label"><i class="bi bi-heart-fill"></i> Dairy Milk Silk — Rs
+                  220</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('dairymilksilk',-1)">−</button>
+                  <input type="number" id="inp-dairymilksilk" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('dairymilksilk',1)">+</button>
                 </div>
-                <div class="col-md-6">
-                  <input type="tel" id="inp-phone" class="form-control builder-input" placeholder="Phone Number" />
+              </div>
+
+              <div class="col-6 col-md-4">
+                <label class="builder-acc-label choc-label"><i class="bi bi-grid-1x2"></i> Dairy Milk — Rs 100</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('dairymilk',-1)">−</button>
+                  <input type="number" id="inp-dairymilk" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('dairymilk',1)">+</button>
                 </div>
-                <div class="col-12">
-                  <textarea id="inp-notes" class="form-control builder-input" rows="2"
-                    placeholder="Any other special instructions — occasion, message card, delivery date…"></textarea>
+              </div>
+
+              <div class="col-6 col-md-4">
+                <label class="builder-acc-label choc-label"><i class="bi bi-egg"></i> Kinder Joy — Rs 100</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('kinderjoy',-1)">−</button>
+                  <input type="number" id="inp-kinderjoy" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('kinderjoy',1)">+</button>
                 </div>
+              </div>
+
+              <div class="col-6 col-md-4">
+                <label class="builder-acc-label choc-label"><i class="bi bi-layers"></i> Snickers — Rs 150</label>
+                <div class="input-group input-group-sm">
+                  <button class="btn btn-qty" onclick="changeQty('snickers',-1)">−</button>
+                  <input type="number" id="inp-snickers" class="form-control text-center" value="0" min="0"
+                    onchange="updateTotal()" />
+                  <button class="btn btn-qty" onclick="changeQty('snickers',1)">+</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- STEP 4: Order Details -->
+            <h5 class="builder-step-title"><span class="step-num">4</span> Order Details</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input type="text" id="inp-name" class="form-control builder-input" placeholder="Your Name" />
+              </div>
+              <div class="col-md-6">
+                <input type="tel" id="inp-phone" class="form-control builder-input" placeholder="Phone Number" />
+              </div>
+              <div class="col-12">
+                <textarea id="inp-notes" class="form-control builder-input" rows="2"
+                  placeholder="Any other special instructions — occasion, message card, delivery date…"></textarea>
+              </div>
 
             </div><!-- end row g-3 (order details) -->
           </div><!-- end builder-card -->
@@ -1147,8 +1147,8 @@
         <h2 class="cta-title">Ready to Create Something <em>Beautiful</em>?</h2>
         <p class="cta-sub">Every bouquet is a promise — let us craft yours today.</p>
         <a href="#builder" class="btn btn-cta-main me-3">Build My Bouquet</a>
-        <a href="https://wa.me/" class="btn btn-cta-wa" target="_blank">
-          <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+        <a href="https://instagram.com/rosairee._" class="btn btn-cta-wa" target="_blank">
+          <i class="bi bi-instagram"></i> DM on Instagram
         </a>
       </div>
     </div>
@@ -1169,7 +1169,7 @@
           </div>
           <p class="footer-tagline">Crafted to Perfection.<br />Ribbon bouquets that last forever.</p>
           <div class="footer-socials mt-3">
-            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="https://instagram.com/rosairee._" target="_blank"><i class="bi bi-instagram"></i></a>
             <a href="#"><i class="bi bi-facebook"></i></a>
             <a href="#"><i class="bi bi-tiktok"></i></a>
             <a href="#"><i class="bi bi-pinterest"></i></a>
