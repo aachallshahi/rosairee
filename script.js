@@ -288,11 +288,12 @@ function placeOrder() {
     `\nColor Preference: ${colorInfo}`;
 
   const formData = new FormData();
-  formData.append("name", name);
-  formData.append("phone", phone);
-  formData.append("order", orderSummary);
-  formData.append("notes", notes || "None");
-  formData.append("total", `Rs ${total}`);
+  formData.append("_subject", `🌸 New Order from ${name} — Rosairee`);
+  formData.append("Customer Name", name);
+  formData.append("Phone Number", phone);
+  formData.append("Order Details", orderSummary);
+  formData.append("Special Notes", notes || "None");
+  formData.append("Order Total", `Rs ${total}`);
 
   const btn = document.querySelector(".btn-place-order");
   btn.disabled = true;
