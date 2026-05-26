@@ -905,11 +905,22 @@
             <a href="https://instagram.com/rosairee._" target="_blank" class="btn btn-place-order w-100 mt-3">
               <i class="bi bi-instagram"></i> Order via Instagram DM
             </a>
+            <button class="btn btn-place-order w-100 mt-3" onclick="placeOrder()">
+              <i class="bi bi-bag-heart"></i> Place Order
+            </button>
+
+            <!-- Success message — hidden until order placed -->
+            <div id="order-success" style="display:none" class="order-success-msg mt-3">
+              <i class="bi bi-check-circle-fill"></i>
+              <strong>Order Placed Successfully!</strong> 🌸<br />
+              <small>We'll confirm your order soon. Thank you!</small>
+            </div>
+
             <button class="btn btn-reset-order w-100 mt-2" onclick="resetBuilder()">
               <i class="bi bi-arrow-counterclockwise"></i> Reset
             </button>
-            <p class="summary-note mt-3"><i class="bi bi-shield-check"></i> Your order details will be sent to our
-              team
+
+            <p class="summary-note mt-3"><i class="bi bi-shield-check"></i> Your order details will be sent to our team
               for confirmation.</p>
           </div>
         </div>

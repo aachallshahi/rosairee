@@ -11,10 +11,7 @@ const SNOW_PRICE_PER_METER = 100;
 const WRAP_PRICE_PER_SHEET = 25;
 const FLOWER_EMOJIS = { rose: "🌹", sunflower: "🌻", tulip: "🌷", daisy: "🌼", plumeria: "🌸", lily: "🌺" };
 
-// Snow paper state
 let snowSelected = false;
-
-// Selected color swatches
 let selectedColors = [];
 
 /* ── Navbar scroll ── */
@@ -80,12 +77,10 @@ function quickAdd(flower, price) {
   if (!inp) return;
   inp.value = parseInt(inp.value || "0", 10) + 1;
   updateTotal();
-  // Toast
   const msg = document.getElementById("toastMsg");
   if (msg) msg.innerHTML = `<i class="bi bi-check-circle-fill me-2" style="color:#c9566a"></i> ${FLOWER_EMOJIS[flower]} 1 ${cap(flower)} added!`;
   const el = document.getElementById("addToast");
   if (el) bootstrap.Toast.getOrCreateInstance(el, { delay: 2500 }).show();
-  // Scroll to builder once
   if (!_hasScrolled) {
     _hasScrolled = true;
     setTimeout(() => document.getElementById("builder")?.scrollIntoView({ behavior: "smooth", block: "start" }), 400);
@@ -98,7 +93,6 @@ function setSnow(val) {
   snowSelected = val;
   document.getElementById("snow-yes").classList.toggle("active", val);
   document.getElementById("snow-no").classList.toggle("active", !val);
-  // Show/hide note in summary
   const note = document.getElementById("snowPricingNote");
   if (note) note.style.display = val ? "block" : "none";
   updateTotal();
@@ -128,7 +122,6 @@ function renderColorTags() {
 
 function removeColor(name) {
   selectedColors = selectedColors.filter(c => c !== name);
-  // Deselect swatch
   document.querySelectorAll(".swatch").forEach(s => { if (s.title === name) s.classList.remove("selected"); });
   renderColorTags();
   updateTotal();
@@ -139,7 +132,6 @@ function updateTotal() {
   const lines = [];
   let total = 0;
 
-  // ── Flowers ──
   Object.keys(PRICES).forEach(f => {
     const qty = parseInt(document.getElementById("inp-" + f)?.value || "0", 10);
     if (qty > 0) {
@@ -149,12 +141,10 @@ function updateTotal() {
     }
   });
 
-  // ── Count total flowers for wrapping paper estimate ──
   const totalFlowers = Object.keys(PRICES).reduce((sum, f) => {
     return sum + parseInt(document.getElementById("inp-" + f)?.value || "0", 10);
   }, 0);
 
-  // ── Basic accessories ──
   const bf = parseInt(document.getElementById("inp-butterfly")?.value || "0", 10);
   if (bf > 0) { const s = bf * 30; total += s; lines.push({ label: `🦋 Butterfly Pins × ${bf}`, value: s }); }
 
@@ -167,12 +157,10 @@ function updateTotal() {
   const plu = parseInt(document.getElementById("inp-plushie")?.value || "0", 10);
   if (plu > 0) { const s = plu * 500; total += s; lines.push({ label: `🧸 Plushie × ${plu}`, value: s }); }
 
-  // ── Snow paper ──
   if (snowSelected) {
     lines.push({ label: `❄️ Snow Paper (Rs 100/meter — team confirms meters)`, value: null });
   }
 
-  // ── Chocolates ──
   Object.keys(CHOC_PRICES).forEach(c => {
     const qty = parseInt(document.getElementById("inp-" + c)?.value || "0", 10);
     if (qty > 0) {
@@ -182,18 +170,16 @@ function updateTotal() {
     }
   });
 
-  // ── Wrapping paper (auto-estimated by flower count) ──
   if (totalFlowers > 0) {
     let sheets, size;
-    if (totalFlowers <= 3) { sheets = 1; size = "extra small bouquet"; }
-    else if (totalFlowers <= 7) { sheets = 4; size = "small bouquet"; }
+    if (totalFlowers <= 3)       { sheets = 1; size = "extra small bouquet"; }
+    else if (totalFlowers <= 7)  { sheets = 4; size = "small bouquet"; }
     else if (totalFlowers <= 12) { sheets = 5; size = "medium bouquet"; }
     else if (totalFlowers <= 18) { sheets = 6; size = "large bouquet"; }
-    else { sheets = 8; size = "extra large bouquet"; }
+    else                         { sheets = 8; size = "extra large bouquet"; }
     const wrapCost = sheets * WRAP_PRICE_PER_SHEET;
     total += wrapCost;
     lines.push({ label: `📦 Wrapping Paper × ${sheets} sheets (${size})`, value: wrapCost });
-    // Show/hide wrapping note in summary
     const wn = document.getElementById("wrappingNote");
     if (wn) wn.style.display = "block";
   } else {
@@ -201,7 +187,6 @@ function updateTotal() {
     if (wn) wn.style.display = "none";
   }
 
-  // ── Render ──
   const sl = document.getElementById("summary-lines");
   const gt = document.getElementById("grand-total");
   if (!sl || !gt) return;
@@ -241,30 +226,39 @@ function resetBuilder() {
   document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));
   renderColorTags();
   const ci = document.getElementById("inp-color-note"); if (ci) ci.value = "";
+  // Reset order button visibility
+  const btn = document.querySelector(".btn-place-order");
+  if (btn) { btn.style.display = ""; btn.disabled = false; btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`; }
+  const success = document.getElementById("order-success");
+  if (success) success.style.display = "none";
   updateTotal();
 }
 
-/* ── Place order via WhatsApp ── */
+/* ── Place Order via Formspree ── */
 function placeOrder() {
   const lines = []; let total = 0;
+
   Object.keys(PRICES).forEach(f => {
     const qty = parseInt(document.getElementById("inp-" + f)?.value || "0", 10);
-    if (qty > 0) { const s = qty * PRICES[f]; total += s; lines.push(`  ${FLOWER_EMOJIS[f]} ${cap(f)} × ${qty} = Rs ${s}`); }
+    if (qty > 0) { const s = qty * PRICES[f]; total += s; lines.push(`${FLOWER_EMOJIS[f]} ${cap(f)} × ${qty} = Rs ${s}`); }
   });
+
   const bf = parseInt(document.getElementById("inp-butterfly")?.value || "0", 10);
-  if (bf > 0) { const s = bf * 30; total += s; lines.push(`  🦋 Butterfly Pins × ${bf} = Rs ${s}`); }
+  if (bf > 0) { const s = bf * 30; total += s; lines.push(`🦋 Butterfly Pins × ${bf} = Rs ${s}`); }
   const lf = parseInt(document.getElementById("inp-leaf")?.value || "0", 10);
-  if (lf > 0) { const s = lf * 10; total += s; lines.push(`  🍃 Leaves × ${lf} = Rs ${s}`); }
+  if (lf > 0) { const s = lf * 10; total += s; lines.push(`🍃 Leaves × ${lf} = Rs ${s}`); }
   const pol = parseInt(document.getElementById("inp-polaroid")?.value || "0", 10);
-  if (pol > 0) { const s = pol * 30; total += s; lines.push(`  📸 Polaroid Photo × ${pol} = Rs ${s}`); }
+  if (pol > 0) { const s = pol * 30; total += s; lines.push(`📸 Polaroid Photo × ${pol} = Rs ${s}`); }
   const plu = parseInt(document.getElementById("inp-plushie")?.value || "0", 10);
-  if (plu > 0) { const s = plu * 500; total += s; lines.push(`  🧸 Plushie × ${plu} = Rs ${s}`); }
-  if (snowSelected) lines.push(`  ❄️ Snow Paper — Rs 100/meter (team confirms exact meters)`);
+  if (plu > 0) { const s = plu * 500; total += s; lines.push(`🧸 Plushie × ${plu} = Rs ${s}`); }
+  if (snowSelected) lines.push(`❄️ Snow Paper — Rs 100/meter (team confirms)`);
+
   Object.keys(CHOC_PRICES).forEach(c => {
     const qty = parseInt(document.getElementById("inp-" + c)?.value || "0", 10);
-    if (qty > 0) { const s = qty * CHOC_PRICES[c]; total += s; lines.push(`  ${CHOC_EMOJIS[c]} × ${qty} = Rs ${s}`); }
+    if (qty > 0) { const s = qty * CHOC_PRICES[c]; total += s; lines.push(`${CHOC_EMOJIS[c]} × ${qty} = Rs ${s}`); }
   });
-  // Wrapping paper
+
+  const totalFlowers2 = Object.keys(PRICES).reduce((sum, f) => sum + parseInt(document.getElementById("inp-" + f)?.value || "0", 10), 0);
   if (totalFlowers2 > 0) {
     let sheets2, size2;
     if (totalFlowers2 <= 3)       { sheets2 = 1; size2 = "extra small"; }
@@ -273,32 +267,58 @@ function placeOrder() {
     else if (totalFlowers2 <= 18) { sheets2 = 6; size2 = "large"; }
     else                          { sheets2 = 8; size2 = "extra large"; }
     const wc = sheets2 * 25; total += wc;
-    lines.push(`  📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
+    lines.push(`📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
   }
 
   if (lines.length === 0) { alert("Please add at least one flower before placing your order! 🌹"); return; }
 
-  // Color info
   const swatchColors = selectedColors.join(", ");
   const typedColor = document.getElementById("inp-color-note")?.value?.trim() || "";
   const colorInfo = [swatchColors, typedColor].filter(Boolean).join(" / ") || "Not specified";
+  const name = document.getElementById("inp-name")?.value?.trim() || "";
+  const phone = document.getElementById("inp-phone")?.value?.trim() || "";
+  const notes = document.getElementById("inp-notes")?.value?.trim() || "";
 
-  const name = document.getElementById("inp-name")?.value || "";
-  const phone = document.getElementById("inp-phone")?.value || "";
-  const notes = document.getElementById("inp-notes")?.value || "";
+  if (!name) { alert("Please enter your name before placing the order."); return; }
+  if (!phone) { alert("Please enter your phone number before placing the order."); return; }
 
-  const msg =
-    `🌸 *New Order — Rosairee*\n\n` +
-    lines.join("\n") +
-    `\n\n*💰 Flowers & Accessories Total: Rs ${total}*` +
-    (snowSelected ? `\n❄️ *Snow paper price to be negotiated*` : "") +
-    `\n\n🎨 *Ribbon Color Preference:* ${colorInfo}` +
-    (name ? `\n👤 *Name:* ${name}` : "") +
-    (phone ? `\n📞 *Phone:* ${phone}` : "") +
-    (notes ? `\n📝 *Notes:* ${notes}` : "") +
-    `\n\nPlease confirm my order. 🙏`;
+  const orderSummary = lines.join("\n") +
+    `\n\nTotal: Rs ${total}` +
+    (snowSelected ? `\n❄️ Snow paper price to be confirmed` : "") +
+    `\nColor Preference: ${colorInfo}`;
 
-  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("phone", phone);
+  formData.append("order", orderSummary);
+  formData.append("notes", notes || "None");
+  formData.append("total", `Rs ${total}`);
+
+  const btn = document.querySelector(".btn-place-order");
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> Placing Order...`;
+
+  fetch("https://formspree.io/f/xqejygjp", {
+    method: "POST",
+    body: formData,
+    headers: { "Accept": "application/json" }
+  })
+  .then(res => {
+    if (res.ok) {
+      document.getElementById("order-success").style.display = "block";
+      btn.style.display = "none";
+      document.getElementById("order-success").scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      alert("Something went wrong. Please try again or DM us on Instagram.");
+      btn.disabled = false;
+      btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
+    }
+  })
+  .catch(() => {
+    alert("Network error. Please check your connection and try again.");
+    btn.disabled = false;
+    btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
+  });
 }
 
 /* ── Tab reveal animation ── */
