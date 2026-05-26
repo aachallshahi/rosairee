@@ -277,10 +277,12 @@ function placeOrder() {
   const colorInfo = [swatchColors, typedColor].filter(Boolean).join(" / ") || "Not specified";
   const name = document.getElementById("inp-name")?.value?.trim() || "";
   const phone = document.getElementById("inp-phone")?.value?.trim() || "";
+  const address = document.getElementById("inp-address")?.value?.trim() || "";
   const notes = document.getElementById("inp-notes")?.value?.trim() || "";
 
   if (!name) { alert("Please enter your name before placing the order."); return; }
   if (!phone) { alert("Please enter your phone number before placing the order."); return; }
+  if (!address) { alert("Please enter your delivery address before placing the order."); return; }
 
   const orderSummary = lines.join("\n") +
     `\n\nTotal: Rs ${total}` +
@@ -292,6 +294,7 @@ function placeOrder() {
   formData.append("Customer Name", name);
   formData.append("Phone Number", phone);
   formData.append("Order Details", orderSummary);
+  formData.append("Delivery Address", address || "Not specified");
   formData.append("Special Notes", notes || "None");
   formData.append("Order Total", `Rs ${total}`);
 
