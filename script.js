@@ -184,10 +184,14 @@ function updateTotal() {
 
   // ── Wrapping paper (auto-estimated by flower count) ──
   if (totalFlowers > 0) {
-    const sheets = totalFlowers <= 10 ? 3 : totalFlowers <= 14 ? 4 : totalFlowers <= 18 ? 5 : 6;
+    let sheets, size;
+    if (totalFlowers <= 3) { sheets = 1; size = "extra small bouquet"; }
+    else if (totalFlowers <= 7) { sheets = 4; size = "small bouquet"; }
+    else if (totalFlowers <= 12) { sheets = 5; size = "medium bouquet"; }
+    else if (totalFlowers <= 18) { sheets = 6; size = "large bouquet"; }
+    else { sheets = 8; size = "extra large bouquet"; }
     const wrapCost = sheets * WRAP_PRICE_PER_SHEET;
     total += wrapCost;
-    const size = totalFlowers <= 10 ? "small bouquet" : totalFlowers <= 14 ? "medium bouquet" : "large bouquet";
     lines.push({ label: `📦 Wrapping Paper × ${sheets} sheets (${size})`, value: wrapCost });
     // Show/hide wrapping note in summary
     const wn = document.getElementById("wrappingNote");
@@ -261,11 +265,15 @@ function placeOrder() {
     if (qty > 0) { const s = qty * CHOC_PRICES[c]; total += s; lines.push(`  ${CHOC_EMOJIS[c]} × ${qty} = Rs ${s}`); }
   });
   // Wrapping paper
-  const totalFlowers2 = Object.keys(PRICES).reduce((sum, f) => sum + parseInt(document.getElementById("inp-" + f)?.value || "0", 10), 0);
   if (totalFlowers2 > 0) {
-    const sheets = totalFlowers2 <= 10 ? 3 : totalFlowers2 <= 14 ? 4 : totalFlowers2 <= 18 ? 5 : 6;
-    const wc = sheets * 25; total += wc;
-    lines.push(`  📦 Wrapping Paper × ${sheets} sheets = Rs ${wc}`);
+    let sheets2, size2;
+    if (totalFlowers2 <= 3)       { sheets2 = 1; size2 = "extra small"; }
+    else if (totalFlowers2 <= 7)  { sheets2 = 4; size2 = "small"; }
+    else if (totalFlowers2 <= 12) { sheets2 = 5; size2 = "medium"; }
+    else if (totalFlowers2 <= 18) { sheets2 = 6; size2 = "large"; }
+    else                          { sheets2 = 8; size2 = "extra large"; }
+    const wc = sheets2 * 25; total += wc;
+    lines.push(`  📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
   }
 
   if (lines.length === 0) { alert("Please add at least one flower before placing your order! 🌹"); return; }
