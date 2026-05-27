@@ -602,3 +602,87 @@ em { color: var(--rose); font-style: italic; }
   text-align: center;
 }
 .btn-insta-chat:hover { opacity: 0.88; color: #fff; }
+/* ── Payment Options ── */
+.payment-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 0.5rem; }
+.payment-option {
+  display: block; cursor: pointer;
+  border: 1.5px solid var(--blush);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  background: #fff;
+  transition: var(--transition);
+}
+.payment-option input[type="radio"] { display: none; }
+.payment-option.selected { border-color: var(--rose); background: var(--rose-pale); }
+.payment-option-inner { display: flex; align-items: center; gap: 1rem; }
+.payment-icon { font-size: 1.6rem; flex-shrink: 0; }
+.payment-option strong {
+  display: block; font-family: var(--font-sans);
+  font-size: 0.85rem; color: var(--dark); letter-spacing: 0.05em;
+}
+.payment-option small { font-size: 0.75rem; color: var(--text-light); }
+
+/* ── Payment Upload ── */
+.payment-upload-box {
+  border: 2px dashed var(--blush);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  background: var(--rose-pale);
+  transition: var(--transition);
+}
+.payment-upload-box:hover { border-color: var(--rose); }
+.payment-upload-label {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.3rem; cursor: pointer; text-align: center;
+}
+.payment-upload-label i { font-size: 2rem; color: var(--rose); }
+.payment-upload-label strong {
+  font-family: var(--font-sans); font-size: 0.85rem; color: var(--dark);
+}
+.payment-upload-label small { font-size: 0.75rem; color: var(--text-light); }
+.payment-file-input { display: none; }
+.payment-file-preview {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.8rem; font-family: var(--font-sans);
+  font-size: 0.82rem; color: var(--dark);
+}
+.payment-file-preview .text-success { color: #2e7d32 !important; font-size: 1.1rem; }
+.payment-file-clear {
+  background: none; border: none; color: var(--rose);
+  font-size: 1rem; cursor: pointer; margin-left: auto;
+}
+/* ── Payment QR ── */
+.payment-qr-section {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--blush);
+}
+.payment-qr-label {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.6rem;
+}
+.payment-qr-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--blush);
+  padding: 6px;
+  background: #fff;
+  display: block;
+  margin: 0 auto 0.6rem;
+}
+.payment-qr-id {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  margin: 0;
+}
+.payment-qr-id strong {
+  color: var(--dark);
+}

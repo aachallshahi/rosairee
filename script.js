@@ -126,7 +126,30 @@ function removeColor(name) {
   renderColorTags();
   updateTotal();
 }
+/* ── Payment method selection ── */
+let selectedPayment = "cod";
+function selectPayment(method) {
+  selectedPayment = method;
+  document.getElementById("pay-cod").classList.toggle("selected", method === "cod");
+  document.getElementById("pay-online").classList.toggle("selected", method === "online");
+  const uploadSection = document.getElementById("payment-upload-section");
+  if (uploadSection) uploadSection.style.display = method === "online" ? "block" : "none";
+}
 
+function handlePaymentFile(input) {
+  const preview = document.getElementById("payment-file-preview");
+  const fileName = document.getElementById("payment-file-name");
+  if (input.files && input.files[0]) {
+    preview.style.display = "flex";
+    fileName.textContent = input.files[0].name;
+  }
+}
+
+function clearPaymentFile() {
+  document.getElementById("inp-payment-ss").value = "";
+  document.getElementById("payment-file-preview").style.display = "none";
+  document.getElementById("payment-file-name").textContent = "";
+}
 /* ── Update total ── */
 function updateTotal() {
   const lines = [];
@@ -158,7 +181,10 @@ function updateTotal() {
   if (plu > 0) { const s = plu * 500; total += s; lines.push({ label: `🧸 Plushie × ${plu}`, value: s }); }
 
   if (snowSelected) {
-    lines.push({ label: `❄️ Snow Paper (Rs 100/meter — team confirms meters)`, value: null });
+    const snowCost = totalFlowers <= 7 ? 50 : 100;
+    const snowLabel = totalFlowers <= 7 ? "Snow Paper (small bouquet)" : "Snow Paper (large bouquet)";
+    total += snowCost;
+    lines.push({ label: `❄️ ${snowLabel}`, value: snowCost });
   }
 
   Object.keys(CHOC_PRICES).forEach(c => {
@@ -172,11 +198,11 @@ function updateTotal() {
 
   if (totalFlowers > 0) {
     let sheets, size;
-    if (totalFlowers <= 3)       { sheets = 1; size = "extra small bouquet"; }
-    else if (totalFlowers <= 7)  { sheets = 4; size = "small bouquet"; }
+    if (totalFlowers <= 3) { sheets = 1; size = "extra small bouquet"; }
+    else if (totalFlowers <= 7) { sheets = 4; size = "small bouquet"; }
     else if (totalFlowers <= 12) { sheets = 5; size = "medium bouquet"; }
     else if (totalFlowers <= 18) { sheets = 6; size = "large bouquet"; }
-    else                         { sheets = 8; size = "extra large bouquet"; }
+    else { sheets = 8; size = "extra large bouquet"; }
     const wrapCost = sheets * WRAP_PRICE_PER_SHEET;
     total += wrapCost;
     lines.push({ label: `📦 Wrapping Paper × ${sheets} sheets (${size})`, value: wrapCost });
@@ -226,6 +252,8 @@ function resetBuilder() {
   document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));
   renderColorTags();
   const ci = document.getElementById("inp-color-note"); if (ci) ci.value = "";
+  selectPayment("cod");
+  clearPaymentFile();
   // Reset order button visibility
   const btn = document.querySelector(".btn-place-order");
   if (btn) { btn.style.display = ""; btn.disabled = false; btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`; }
@@ -251,7 +279,12 @@ function placeOrder() {
   if (pol > 0) { const s = pol * 30; total += s; lines.push(`📸 Polaroid Photo × ${pol} = Rs ${s}`); }
   const plu = parseInt(document.getElementById("inp-plushie")?.value || "0", 10);
   if (plu > 0) { const s = plu * 500; total += s; lines.push(`🧸 Plushie × ${plu} = Rs ${s}`); }
-  if (snowSelected) lines.push(`❄️ Snow Paper — Rs 100/meter (team confirms)`);
+  if (snowSelected) {
+    const snowCost2 = totalFlowers2 <= 7 ? 50 : 100;
+    const snowLabel2 = totalFlowers2 <= 7 ? "Snow Paper (small bouquet)" : "Snow Paper (large bouquet)";
+    total += snowCost2;
+    lines.push(`❄️ ${snowLabel2} = Rs ${snowCost2}`);
+  }
 
   Object.keys(CHOC_PRICES).forEach(c => {
     const qty = parseInt(document.getElementById("inp-" + c)?.value || "0", 10);
@@ -261,11 +294,11 @@ function placeOrder() {
   const totalFlowers2 = Object.keys(PRICES).reduce((sum, f) => sum + parseInt(document.getElementById("inp-" + f)?.value || "0", 10), 0);
   if (totalFlowers2 > 0) {
     let sheets2, size2;
-    if (totalFlowers2 <= 3)       { sheets2 = 1; size2 = "extra small"; }
-    else if (totalFlowers2 <= 7)  { sheets2 = 4; size2 = "small"; }
+    if (totalFlowers2 <= 3) { sheets2 = 1; size2 = "extra small"; }
+    else if (totalFlowers2 <= 7) { sheets2 = 4; size2 = "small"; }
     else if (totalFlowers2 <= 12) { sheets2 = 5; size2 = "medium"; }
     else if (totalFlowers2 <= 18) { sheets2 = 6; size2 = "large"; }
-    else                          { sheets2 = 8; size2 = "extra large"; }
+    else { sheets2 = 8; size2 = "extra large"; }
     const wc = sheets2 * 25; total += wc;
     lines.push(`📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
   }
@@ -286,17 +319,25 @@ function placeOrder() {
 
   const orderSummary = lines.join("\n") +
     `\n\nTotal: Rs ${total}` +
-    (snowSelected ? `\n❄️ Snow paper price to be confirmed` : "") +
     `\nColor Preference: ${colorInfo}`;
+
+  // Validate screenshot if online payment selected
+  const paymentFile = document.getElementById("inp-payment-ss")?.files[0];
+  if (selectedPayment === "online" && !paymentFile) {
+    alert("Please upload your payment screenshot before placing the order.");
+    return;
+  }
 
   const formData = new FormData();
   formData.append("_subject", `🌸 New Order from ${name} — Rosairee`);
   formData.append("Customer Name", name);
   formData.append("Phone Number", phone);
-  formData.append("Order Details", orderSummary);
   formData.append("Delivery Address", address || "Not specified");
+  formData.append("Payment Method", selectedPayment === "cod" ? "Cash on Delivery" : "Online Payment");
+  formData.append("Order Details", orderSummary);
   formData.append("Special Notes", notes || "None");
   formData.append("Order Total", `Rs ${total}`);
+  if (paymentFile) formData.append("Payment Screenshot", paymentFile);
 
   const btn = document.querySelector(".btn-place-order");
   btn.disabled = true;
@@ -307,22 +348,22 @@ function placeOrder() {
     body: formData,
     headers: { "Accept": "application/json" }
   })
-  .then(res => {
-    if (res.ok) {
-      document.getElementById("order-success").style.display = "block";
-      btn.style.display = "none";
-      document.getElementById("order-success").scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      alert("Something went wrong. Please try again or DM us on Instagram.");
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("order-success").style.display = "block";
+        btn.style.display = "none";
+        document.getElementById("order-success").scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        alert("Something went wrong. Please try again or DM us on Instagram.");
+        btn.disabled = false;
+        btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
+      }
+    })
+    .catch(() => {
+      alert("Network error. Please check your connection and try again.");
       btn.disabled = false;
       btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
-    }
-  })
-  .catch(() => {
-    alert("Network error. Please check your connection and try again.");
-    btn.disabled = false;
-    btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
-  });
+    });
 }
 
 /* ── Tab reveal animation ── */

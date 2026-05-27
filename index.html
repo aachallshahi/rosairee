@@ -866,6 +866,7 @@
             </div>
 
             <!-- STEP 4: Order Details -->
+            <!-- STEP 4: Order Details -->
             <h5 class="builder-step-title"><span class="step-num">4</span> Order Details</h5>
             <div class="row g-3">
               <div class="col-md-6">
@@ -882,52 +883,104 @@
                   placeholder="Any other special instructions — occasion, message card, delivery date…"></textarea>
               </div>
 
-            </div><!-- end row g-3 (order details) -->
-          </div><!-- end builder-card -->
-        </div><!-- end col-lg-7 -->
+              <!-- Payment Method -->
+              <div class="col-12">
+                <p class="acc-group-label">💳 Payment Method</p>
+                <div class="payment-options">
+                  <label class="payment-option selected" id="pay-cod" onclick="selectPayment('cod')">
+                    <input type="radio" name="payment" value="cod" checked />
+                    <div class="payment-option-inner">
+                      <span class="payment-icon">🚪</span>
+                      <div>
+                        <strong>Cash on Delivery</strong>
+                        <small>Pay when you receive your bouquet</small>
+                      </div>
+                    </div>
+                  </label>
+                  <label class="payment-option" id="pay-online" onclick="selectPayment('online')">
+                    <input type="radio" name="payment" value="online" />
+                    <div class="payment-option-inner">
+                      <span class="payment-icon">📱</span>
+                      <div>
+                        <strong>Online Payment</strong>
+                        <small>eSewa / Khalti / Fonepay — upload screenshot below</small>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
 
-        <!-- Price Summary -->
-        <div class="col-lg-5">
-          <div class="summary-card sticky-top" style="top:90px">
-            <h5 class="summary-title"><i class="bi bi-receipt"></i> Order Summary</h5>
-            <div id="summary-lines" class="summary-lines">
-              <p class="summary-empty">Add flowers to see your total.</p>
-            </div>
-            <hr class="summary-divider" />
-            <div class="summary-total-row">
-              <span>Flowers &amp; Accessories Total</span>
-              <span id="grand-total" class="grand-total">Rs 0</span>
-            </div>
-            <div class="snow-pricing-note mt-2" id="snowPricingNote" style="display:none">
-              <i class="bi bi-snow"></i> Snow paper: Rs 100/meter. Team will confirm meters based on bouquet size.
-            </div>
-            <div class="wrapping-note mt-2" id="wrappingNote" style="display:none">
-              <i class="bi bi-box-seam"></i> Wrapping paper estimated from flower count — team will confirm exact
-              sheets.
+              <!-- Payment screenshot upload — shown only for online payment -->
+              <div class="col-12" id="payment-upload-section" style="display:none">
+                <div class="payment-upload-box">
+                  <div class="payment-qr-section">
+                    <p class="payment-qr-label">Scan to Pay</p>
+                    <img src="payment-qr.png" alt="Payment QR" class="payment-qr-img" />
+                    <p class="payment-qr-id">Scan with any banking app, eSewa, Khalti, Fonepay</p>
+                  </div>
+                  <label class="payment-upload-label" for="inp-payment-ss">
+                    <i class="bi bi-cloud-upload"></i>
+                    <strong>Upload Payment Screenshot</strong>
+                    <small>After paying, upload your screenshot here</small>
+                  </label>
+                  <input type="file" id="inp-payment-ss" accept="image/*" class="payment-file-input"
+                    onchange="handlePaymentFile(this)" />
+                  <div id="payment-file-preview" class="payment-file-preview" style="display:none">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <span id="payment-file-name"></span>
+                    <button type="button" onclick="clearPaymentFile()" class="payment-file-clear">✕</button>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-            <button class="btn btn-place-order w-100 mt-3" onclick="placeOrder()">
-              <i class="bi bi-bag-heart"></i> Place Order
-            </button>
+          </div><!-- end row g-3 (order details) -->
+        </div><!-- end builder-card -->
+      </div><!-- end col-lg-7 -->
 
-            <!-- Success message — hidden until order placed -->
-            <div id="order-success" style="display:none" class="order-success-msg mt-3">
-              <i class="bi bi-check-circle-fill"></i>
-              <strong>Order Placed Successfully!</strong> 🌸<br />
-              <small>We'll confirm your order soon. Thank you!</small>
-            </div>
-
-            <button class="btn btn-reset-order w-100 mt-2" onclick="resetBuilder()">
-              <i class="bi bi-arrow-counterclockwise"></i> Reset
-            </button>
-            <a href="https://instagram.com/rosairee._" target="_blank" class="btn btn-insta-chat w-100 mt-2">
-              <i class="bi bi-instagram"></i> Chat on Instagram
-            </a>
-            <p class="summary-note mt-3"><i class="bi bi-shield-check"></i> Your order details will be sent to our team
-              for confirmation.</p>
+      <!-- Price Summary -->
+      <div class="col-lg-5">
+        <div class="summary-card sticky-top" style="top:90px">
+          <h5 class="summary-title"><i class="bi bi-receipt"></i> Order Summary</h5>
+          <div id="summary-lines" class="summary-lines">
+            <p class="summary-empty">Add flowers to see your total.</p>
           </div>
+          <hr class="summary-divider" />
+          <div class="summary-total-row">
+            <span>Flowers &amp; Accessories Total</span>
+            <span id="grand-total" class="grand-total">Rs 0</span>
+          </div>
+          <div class="snow-pricing-note mt-2" id="snowPricingNote" style="display:none">
+            <i class="bi bi-snow"></i> Snow paper: Rs 100/meter. Team will confirm meters based on bouquet size.
+          </div>
+          <div class="wrapping-note mt-2" id="wrappingNote" style="display:none">
+            <i class="bi bi-box-seam"></i> Wrapping paper estimated from flower count — team will confirm exact
+            sheets.
+          </div>
+
+          <button class="btn btn-place-order w-100 mt-3" onclick="placeOrder()">
+            <i class="bi bi-bag-heart"></i> Place Order
+          </button>
+
+          <!-- Success message — hidden until order placed -->
+          <div id="order-success" style="display:none" class="order-success-msg mt-3">
+            <i class="bi bi-check-circle-fill"></i>
+            <strong>Order Placed Successfully!</strong> 🌸<br />
+            <small>We'll confirm your order soon. Thank you!</small>
+          </div>
+
+          <button class="btn btn-reset-order w-100 mt-2" onclick="resetBuilder()">
+            <i class="bi bi-arrow-counterclockwise"></i> Reset
+          </button>
+          <a href="https://instagram.com/rosairee._" target="_blank" class="btn btn-insta-chat w-100 mt-2">
+            <i class="bi bi-instagram"></i> Chat on Instagram
+          </a>
+          <p class="summary-note mt-3"><i class="bi bi-shield-check"></i> Your order details will be sent to our team
+            for confirmation.</p>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -955,7 +1008,8 @@
           <div class="acc-info-card text-center">
             <h5>Snow Paper</h5>
             <p>Frosted wrapping paper — adds volume and elegance to your bouquet.</p>
-            <div class="acc-price">Rs 100 <small>/ meter used</small></div>
+            <div class="acc-price">Rs 50 <small>/ small bouquet</small></div>
+            <div class="acc-price">Rs 100 <small>/ large bouquet</small></div>
           </div>
         </div>
         <div class="col-sm-6 col-lg-3">
@@ -1138,10 +1192,9 @@
               </h2>
               <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                 <div class="accordion-body">
-                  Snow paper is priced per meter used, and the rate is negotiated based on the type of paper (plain,
-                  printed, glitter, etc.) and the size of your bouquet. When you select "Yes" for snow paper in your
-                  order, our team will calculate the exact meters needed and confirm the price with you before
-                  proceeding.
+                  Snow paper wrapping is priced by bouquet size — Rs 50 for small bouquets (1–7 flowers) and Rs 100 for
+                  large bouquets (8+ flowers). The cost is automatically added to your total when you select "Yes" for
+                  snow paper in the builder.
                 </div>
               </div>
             </div>
