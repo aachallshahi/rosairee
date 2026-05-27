@@ -12,7 +12,7 @@ const FLOWER_EMOJIS = { rose: "🌹", sunflower: "🌻", tulip: "🌷", daisy: "
 
 let snowSelected = null;
 let selectedColors = [];
-let selectedPayment = "cod";
+let selectedPayment = null;
 
 /* ── Navbar scroll ── */
 (function () {
