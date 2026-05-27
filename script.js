@@ -303,10 +303,12 @@ function placeOrder() {
     lines.push(`📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
   }
 
-  if (lines.length === 0) { alert("Please add at least one flower. 🌹"); return; }
+  if (lines.length === 0) { alert("🌹 Please add at least one flower."); return; }
+
+  if (snowSelected === null) { alert("❄️ Please choose Yes or No for Snow Paper Wrapping."); return; }
 
   const colorNote = document.getElementById("inp-color-note")?.value?.trim() || "";
-  if (selectedColors.length === 0 && !colorNote) { alert("Please choose or describe your ribbon color preference."); return; }
+  if (selectedColors.length === 0 && !colorNote) { alert("🎨 Please choose or describe your ribbon color preference."); return; }
 
   const swatchColors = selectedColors.join(", ");
   const typedColor = document.getElementById("inp-color-note")?.value?.trim() || "";
@@ -316,19 +318,15 @@ function placeOrder() {
   const address = document.getElementById("inp-address")?.value?.trim() || "";
   const notes = document.getElementById("inp-notes")?.value?.trim() || "";
 
-  if (!name) { alert("Please enter your name."); return; }
-  if (!phone) { alert("Please enter your phone number."); return; }
-  if (!address) { alert("Please enter your delivery address."); return; }
-
-  const payment = document.querySelector('input[name="payment"]:checked');
-  if (!payment) { alert("Please select a payment method."); return; }
-
+  if (!name) { alert("👤 Please enter your name."); return; }
+  if (!phone) { alert("📞 Please enter your phone number."); return; }
+  if (!address) { alert("📍 Please enter your delivery address."); return; }
+  if (!notes) { alert("📝 Please enter special instructions — occasion, delivery date, or any message."); return; }
+  if (!selectedPayment) { alert("💳 Please select a payment method."); return; }
   if (selectedPayment === "online") {
     const paymentFile = document.getElementById("inp-payment-ss")?.files[0];
-    if (!paymentFile) { alert("Please upload your payment screenshot."); return; }
+    if (!paymentFile) { alert("📸 Please upload your payment screenshot."); return; }
   }
-  if (!address) { alert("Please enter your delivery address before placing the order."); return; }
-
   const orderSummary = lines.join("\n") +
     `\n\nTotal: Rs ${total}` +
     `\nColor Preference: ${colorInfo}`;

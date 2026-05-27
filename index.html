@@ -691,6 +691,7 @@
             <!-- STEP 2: Color Preference -->
             <h5 class="builder-step-title"><span class="step-num">2</span> Choose Ribbon Colors</h5>
             <div class="color-picker-section mb-4">
+              <p class="required-marker">* Color preference is required</p>
               <p class="color-picker-note">
                 <i class="bi bi-info-circle-fill"></i>
                 All flowers are available in <strong>any ribbon color</strong>. Select your preferred palette below or
@@ -726,7 +727,8 @@
                 <span class="no-color-yet">No colors selected yet — tap swatches above or type below</span>
               </div>
               <input type="text" id="inp-color-note" class="form-control builder-input mt-2"
-                placeholder="e.g. Red roses, white lilies, mixed pastel daisies…" oninput="updateTotal()" />
+                placeholder="Describe your color preference * — e.g. Red roses, white lilies…"
+                oninput="updateTotal()" />
             </div>
 
 
@@ -734,7 +736,7 @@
             <h5 class="builder-step-title"><span class="step-num">3</span> Choose Accessories</h5>
 
             <!-- ── Wrapping & Basic Extras ── -->
-            <p class="acc-group-label">Wrapping &amp; Basic Extras</p>
+            <p class="acc-group-label">Wrapping &amp; Basic Extras <span class="required-tag">required</span></p>
             <div class="row g-3 mb-3">
 
               <!-- Butterfly Pins -->
@@ -808,7 +810,7 @@
             </div>
 
             <!-- ── Chocolates ── -->
-            <p class="acc-group-label">🍫 Chocolates (add to bouquet)</p>
+            <p class="acc-group-label">🍫 Chocolates <span class="optional-tag">optional</span></p>
             <div class="row g-3 mb-4">
 
               <div class="col-6 col-md-4">
@@ -870,22 +872,23 @@
             <h5 class="builder-step-title"><span class="step-num">4</span> Order Details</h5>
             <div class="row g-3">
               <div class="col-md-6">
-                <input type="text" id="inp-name" class="form-control builder-input" placeholder="Your Name" />
+                <input type="text" id="inp-name" class="form-control builder-input" placeholder="Your Name *" />
               </div>
               <div class="col-md-6">
-                <input type="tel" id="inp-phone" class="form-control builder-input" placeholder="Phone Number" />
+                <input type="tel" id="inp-phone" class="form-control builder-input" placeholder="Phone Number *" />
               </div>
               <div class="col-12">
-                <input type="text" id="inp-address" class="form-control builder-input" placeholder="Delivery Address" />
+                <input type="text" id="inp-address" class="form-control builder-input"
+                  placeholder="Delivery Address *" />
               </div>
               <div class="col-12">
                 <textarea id="inp-notes" class="form-control builder-input" rows="2"
-                  placeholder="Any other special instructions — occasion, message card, delivery date…"></textarea>
+                  placeholder="Any other special instructions * — occasion, message card, delivery date…"></textarea>
               </div>
 
               <!-- Payment Method -->
               <div class="col-12">
-                <p class="acc-group-label">💳 Payment Method</p>
+                <p class="acc-group-label">💳 Payment Method <span class="required-tag">required</span></p>
                 <div class="payment-options">
                   <label class="payment-option selected" id="pay-cod" onclick="selectPayment('cod')">
                     <input type="radio" name="payment" value="cod" checked />

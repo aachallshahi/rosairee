@@ -686,3 +686,36 @@ em { color: var(--rose); font-style: italic; }
 .payment-qr-id strong {
   color: var(--dark);
 }
+/* ── Required / Optional markers ── */
+.required-tag {
+  font-size: 0.62rem;
+  background: #fce4ec;
+  color: #c62828;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+.optional-tag {
+  font-size: 0.62rem;
+  background: #f5f5f5;
+  color: #9e9e9e;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+.required-marker {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: #c62828;
+  margin-bottom: 0.5rem;
+}
+/* Mandatory star in placeholders */
+.form-control::placeholder { color: var(--text-light); }
