@@ -66,7 +66,15 @@ let selectedPayment = "cod";
 function changeQty(key, delta) {
   const inp = document.getElementById("inp-" + key);
   if (!inp) return;
-  inp.value = Math.max(0, parseInt(inp.value || "0", 10) + delta);
+  const current = parseInt(inp.value || "0", 10);
+  const totalFlowers = Object.keys(PRICES).reduce((sum, f) => {
+    return sum + parseInt(document.getElementById("inp-" + f)?.value || "0", 10);
+  }, 0);
+  if (delta > 0 && totalFlowers >= 100) {
+    alert("🌸 Maximum 100 flowers total per bouquet.");
+    return;
+  }
+  inp.value = Math.max(0, current + delta);
   updateTotal();
 }
 
@@ -202,11 +210,14 @@ function updateTotal() {
 
   if (totalFlowers > 0) {
     let sheets, size;
-    if (totalFlowers <= 3)       { sheets = 1; size = "extra small bouquet"; }
-    else if (totalFlowers <= 7)  { sheets = 3; size = "small bouquet"; }
+    if (totalFlowers <= 3) { sheets = 1; size = "extra small bouquet"; }
+    else if (totalFlowers <= 7) { sheets = 3; size = "small bouquet"; }
     else if (totalFlowers <= 12) { sheets = 4; size = "medium bouquet"; }
     else if (totalFlowers <= 18) { sheets = 6; size = "large bouquet"; }
-    else                         { sheets = 8; size = "extra large bouquet"; }
+    else if (totalFlowers <= 30) { sheets = 8; size = "extra large bouquet"; }
+    else if (totalFlowers <= 50) { sheets = 10; size = "grand bouquet"; }
+    else if (totalFlowers <= 75) { sheets = 12; size = "luxury bouquet"; }
+    else { sheets = 15; size = "mega bouquet"; }
     const wrapCost = sheets * WRAP_PRICE_PER_SHEET;
     total += wrapCost;
     lines.push({ label: `📦 Wrapping Paper × ${sheets} sheets (${size})`, value: wrapCost });
@@ -307,11 +318,14 @@ function placeOrder() {
 
   if (totalFlowers2 > 0) {
     let sheets2, size2;
-    if (totalFlowers2 <= 3)       { sheets2 = 1; size2 = "extra small"; }
-    else if (totalFlowers2 <= 7)  { sheets2 = 3; size2 = "small"; }
+    if (totalFlowers2 <= 3) { sheets2 = 1; size2 = "extra small"; }
+    else if (totalFlowers2 <= 7) { sheets2 = 3; size2 = "small"; }
     else if (totalFlowers2 <= 12) { sheets2 = 4; size2 = "medium"; }
     else if (totalFlowers2 <= 18) { sheets2 = 6; size2 = "large"; }
-    else                          { sheets2 = 8; size2 = "extra large"; }
+    else if (totalFlowers2 <= 30) { sheets2 = 8; size2 = "extra large"; }
+    else if (totalFlowers2 <= 50) { sheets2 = 10; size2 = "grand"; }
+    else if (totalFlowers2 <= 75) { sheets2 = 12; size2 = "luxury"; }
+    else { sheets2 = 15; size2 = "mega"; }
     const wc = sheets2 * 25; total += wc;
     lines.push(`📦 Wrapping Paper × ${sheets2} sheets (${size2}) = Rs ${wc}`);
   }
@@ -369,22 +383,22 @@ function placeOrder() {
     body: formData,
     headers: { "Accept": "application/json" }
   })
-  .then(res => {
-    if (res.ok) {
-      document.getElementById("order-success").style.display = "block";
-      btn.style.display = "none";
-      document.getElementById("order-success").scrollIntoView({ behavior: "smooth", block: "center" });
-    } else {
-      alert("Something went wrong. Please try again or DM us on Instagram.");
+    .then(res => {
+      if (res.ok) {
+        document.getElementById("order-success").style.display = "block";
+        btn.style.display = "none";
+        document.getElementById("order-success").scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        alert("Something went wrong. Please try again or DM us on Instagram.");
+        btn.disabled = false;
+        btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
+      }
+    })
+    .catch(() => {
+      alert("Network error. Please check your connection and try again.");
       btn.disabled = false;
       btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
-    }
-  })
-  .catch(() => {
-    alert("Network error. Please check your connection and try again.");
-    btn.disabled = false;
-    btn.innerHTML = `<i class="bi bi-bag-heart"></i> Place Order`;
-  });
+    });
 }
 
 /* ── Tab reveal animation ── */
